@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nebeng Bareng — Planet Bekasi Express</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚗</text></svg>">
+<style>
+  :root {
+    --bg: #0f1220;
+    --card: #1a1e33;
+    --card2: #171b2e;
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --accent: #22d3ee;
+    --danger: #ef4444;
+    --success: #10b981;
+    --warning: #fbbf24;
+    --text: #e2e4f3;
+    --muted: #9ca3d4;
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    margin: 0;
+    background: radial-gradient(circle at top, #1a1e3d 0%, #0b0d1a 100%);
+    color: var(--text);
+    min-height: 100vh;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+
+  /* NAVBAR */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(11,13,26,0.85); backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; }
+  .brand { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 17px; }
+  .brand span.dot { color: var(--accent); }
+  nav .menu { display: flex; gap: 6px; }
+  nav .menu a {
+    color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 600;
+    padding: 8px 14px; border-radius: 8px; transition: all .15s ease;
+  }
+  nav .menu a:hover, nav .menu a.active { color: var(--text); background: rgba(99,102,241,0.15); }
+  @media (max-width: 560px) { nav .menu { display: none; } }
+
+  /* HERO */
+  .hero {
+    text-align: center; padding: 56px 16px 40px; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 20% 20%, rgba(99,102,241,0.18), transparent 45%),
+                radial-gradient(circle at 80% 10%, rgba(34,211,238,0.15), transparent 40%);
+    pointer-events: none;
+  }
+  .hero .badge-hero {
+    display: inline-block; background: rgba(251,191,36,0.15); color: var(--warning);
+    padding: 6px 16px; border-radius: 30px; font-size: 12.5px; font-weight: 700; margin-bottom: 16px;
+    letter-spacing: .4px; text-transform: uppercase;
+  }
+  .hero h1 {
+    font-size: 42px; margin: 0 0 12px; line-height: 1.15; position: relative;
+  }
+  .hero h1 .grad {
+    background: linear-gradient(90deg, var(--accent), var(--primary));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero p.lead {
+    color: var(--muted); font-size: 16px; max-width: 620px; margin: 0 auto 28px; position: relative;
+  }
+  .hero .cta-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; }
+
+  .route-chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 24px; position: relative; }
+  .route-chip {
+    background: var(--card); border: 1px solid rgba(255,255,255,0.08); color: var(--muted);
+    padding: 6px 14px; border-radius: 20px; font-size: 12.5px; font-weight: 600;
+  }
+
+  /* SECTION GENERIC */
+  section { padding: 50px 0; }
+  .section-title { text-align: center; margin-bottom: 32px; }
+  .section-title h2 { font-size: 26px; margin: 0 0 8px; }
+  .section-title p { color: var(--muted); font-size: 14.5px; margin: 0; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 700px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  .info-card {
+    background: var(--card); border: 1px solid rgba(255,255,255,0.06);
+    border-radius: var(--radius); padding: 22px; box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .info-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.35); }
+  .info-card .icon-badge {
+    width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center;
+    justify-content: center; font-size: 22px; margin-bottom: 14px;
+  }
+  .icon-badge.plus { background: rgba(16,185,129,0.15); }
+  .icon-badge.minus { background: rgba(239,68,68,0.15); }
+  .icon-badge.wallet { background: rgba(251,191,36,0.15); }
+  .icon-badge.shield { background: rgba(99,102,241,0.2); }
+  .info-card h3 { margin: 0 0 8px; font-size: 16.5px; }
+  .info-card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+
+  .cta-final {
+    text-align: center; background: linear-gradient(135deg, rgba(99,102,241,0.18), rgba(34,211,238,0.12));
+    border: 1px solid rgba(99,102,241,0.3); border-radius: var(--radius); padding: 30px 20px;
+  }
+  .cta-final h3 { margin: 0 0 6px; font-size: 20px; }
+  .cta-final p { color: var(--muted); margin: 0 0 18px; font-size: 14px; }
+
+  /* BUTTONS */
+  button, .btn {
+    border: none; padding: 11px 20px; border-radius: 10px; cursor: pointer;
+    font-size: 14px; font-weight: 600; transition: transform .12s ease, filter .12s ease, box-shadow .12s ease;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  button:active, .btn:active { transform: scale(0.97); }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: #fff; box-shadow: 0 4px 16px rgba(99,102,241,0.4);
+  }
+  .btn-primary:hover { filter: brightness(1.1); }
+  .btn-secondary { background: #232742; color: var(--text); }
+  .btn-secondary:hover { background: #2c3155; }
+  .btn-pdf { background: linear-gradient(135deg, var(--danger), #f97316); color: #fff; box-shadow: 0 4px 16px rgba(239,68,68,0.35); }
+  .btn-pdf:hover { filter: brightness(1.1); }
+  .btn-outline { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: var(--text); }
+  .btn-outline:hover { background: rgba(255,255,255,0.06); }
+  .btn-danger { background: transparent; color: var(--danger); padding: 4px 10px; font-size: 12px; border: 1px solid rgba(239,68,68,0.4); }
+  .btn-danger:hover { background: rgba(239,68,68,0.12); }
+
+  /* CALCULATOR */
+  .calc-toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 20px; }
+  .calc-toolbar .add-name-box { display: flex; gap: 8px; margin-left: auto; }
+  .calc-toolbar .add-name-box input {
+    width: 160px; padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1);
+    background: #12162a; color: var(--text); font-size: 13.5px; outline: none;
+  }
+  .calc-toolbar .add-name-box input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(99,102,241,0.25); }
+
+  .people-pool { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+  .people-pool .pool-chip {
+    background: var(--card2); border: 1px solid rgba(255,255,255,0.08); color: var(--muted);
+    padding: 6px 12px; border-radius: 20px; font-size: 12.5px; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .people-pool .pool-chip button {
+    background: none; border: none; color: var(--danger); font-size: 13px; padding: 0; margin: 0; cursor: pointer;
+    line-height: 1;
+  }
+
+  .day-card {
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  }
+  .day-card:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.35); }
+  .day-card.invalid { border-color: rgba(239,68,68,0.6); box-shadow: 0 0 0 3px rgba(239,68,68,0.15); }
+  .day-card h3 {
+    margin: 0 0 12px; display: flex; align-items: center; justify-content: space-between;
+    font-size: 16px; color: var(--accent);
+  }
+  label {
+    display: block; margin: 10px 0 5px; font-weight: 600; font-size: 12.5px;
+    color: var(--muted); letter-spacing: .3px; text-transform: uppercase;
+  }
+  .driver-warning {
+    display: none; margin-top: 4px; font-size: 12px; color: var(--danger); font-weight: 600;
+  }
+  .day-card.invalid .driver-warning { display: block; }
+  input[type=text], input[type=number], select {
+    width: 100%; padding: 10px 12px; border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px; background: #12162a; color: var(--text); font-size: 14px;
+    outline: none; transition: border-color .15s ease, box-shadow .15s ease;
+  }
+  select { appearance: none; -webkit-appearance: none; cursor: pointer; }
+  select option { background: #12162a; color: var(--text); }
+  input:focus, select:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(99,102,241,0.25); }
+  .row { display: flex; gap: 12px; }
+  .row > div { flex: 1; }
+  .pax-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+  .pax-chip {
+    background: #12162a; border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px; padding: 7px 14px; font-size: 13px; cursor: pointer;
+    user-select: none; transition: all .15s ease; color: var(--muted);
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .pax-chip input { display: none; }
+  .pax-chip.active { background: rgba(99,102,241,0.2); border-color: var(--primary); color: var(--text); font-weight: 600; }
+  .pax-chip.disabled { opacity: .3; pointer-events: none; }
+
+  .actions { margin: 22px 0; display: flex; flex-wrap: wrap; gap: 10px; }
+  #hasil { animation: fadeUp .4s ease; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  .result-section {
+    background: var(--card); border: 1px solid rgba(255,255,255,0.06);
+    border-radius: var(--radius); padding: 20px; margin-top: 18px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  }
+  .result-section h2 { margin-top: 0; font-size: 17px; color: var(--accent); display: flex; align-items: center; gap: 8px; }
+  table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 14px; overflow: hidden; border-radius: 10px; }
+  th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  th { background: #12162a; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .4px; }
+  tr:hover td { background: rgba(99,102,241,0.06); }
+  .final-row td { background: rgba(251,191,36,0.08); font-weight: 700; color: var(--warning); }
+  .final-row:hover td { background: rgba(251,191,36,0.16); }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; }
+  .badge-receive { background: rgba(16,185,129,0.15); color: var(--success); }
+  .badge-pay { background: rgba(239,68,68,0.15); color: var(--danger); }
+  .badge-even { background: rgba(156,163,212,0.15); color: var(--muted); }
+  .empty-state { text-align: center; color: var(--muted); padding: 20px 0; font-style: italic; }
+  .toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: var(--danger); color: #fff; padding: 12px 20px; border-radius: 10px;
+    font-size: 14px; font-weight: 600; box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    opacity: 0; pointer-events: none; transition: all .25s ease; z-index: 100; max-width: 90%;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  footer { text-align: center; color: var(--muted); font-size: 12px; margin-top: 20px; padding: 30px 16px; }
+  @media (max-width: 600px) {
+    .row { flex-direction: column; gap: 0; }
+    .hero h1 { font-size: 28px; }
+    .calc-toolbar .add-name-box { margin-left: 0; width: 100%; }
+    .calc-toolbar .add-name-box input { flex: 1; width: auto; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">🚗 Planet Bekasi <span class="dot">Express</span></div>
+    <div class="menu">
+      <a href="#plusminus">Plus Minus</a>
+      <a href="#syarat">Syarat</a>
+      <a href="#kalkulator">Hitung Biaya</a>
+      <a href="https://wa.me/6281282529816?text=Halo%2C%20saya%20mau%20minta%20join%20grup%20WA%20Nebeng%20Planet%20Bekasi%20dong!" target="_blank" rel="noopener" class="btn-outline btn" style="padding:8px 16px;">Join Sekarang</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="badge-hero">🌟 Wanted: Teman Nebeng &amp; Patungan</div>
+    <h1>Nebeng Bareng Line <span class="grad">Planet Bekasi</span> &amp; Sekitarnya 🚗💨</h1>
+    <p class="lead">
+      Halo warganya Jatimulya, Pondok Hijau, Rawalumbu, Granwis, Tambun, Cibitung, sampai Cikarang!
+      Daripada pusing sendirian liat merahnya Google Maps, mending kita pusing bareng-bareng
+      di satu mobil via jalur tol. Aku lagi cari rekan seperjuangan yang mau berangkat–pulang kerja bareng.
+    </p>
+    <div class="cta-group">
+      <a href="https://wa.me/6281282529816?text=Halo%2C%20saya%20mau%20minta%20join%20grup%20WA%20Nebeng%20Planet%20Bekasi%20dong!" target="_blank" rel="noopener" class="btn btn-primary">🙋 Mau Join Rombongan</a>
+      <a href="#kalkulator" class="btn btn-secondary">🧮 Hitung Biaya Patungan</a>
+    </div>
+    <div class="route-chips">
+      <span class="route-chip">📍 Jatimulya</span>
+      <span class="route-chip">📍 Pondok Hijau</span>
+      <span class="route-chip">📍 Rawalumbu</span>
+      <span class="route-chip">📍 Granwis</span>
+      <span class="route-chip">📍 Tambun</span>
+      <span class="route-chip">📍 Cibitung</span>
+      <span class="route-chip">📍 Cikarang</span>
+    </div>
+  </div>
+</section>
+
+<section id="plusminus">
+  <div class="wrap">
+    <div class="section-title">
+      <h2>Plus Minus Join Rombongan</h2>
+      <p>Biar sama-sama tau ekspektasinya sebelum join 😄</p>
+    </div>
+    <div class="grid-2">
+      <div class="info-card">
+        <div class="icon-badge plus">👍</div>
+        <h3>Plus (+)</h3>
+        <p>Dijamin gak keujanan, gak kepanasan, plus AC dingin sepanjang jalan.</p>
+      </div>
+      <div class="info-card">
+        <div class="icon-badge minus">👎</div>
+        <h3>Minus (-)</h3>
+        <p>Harus siap ngelus dada kalau pas mau sampe kantor malah ketemu lapak bongkar muat yang
+        bikin jalan tersendat — ujung-ujungnya absen mepet atau malah telat. 😭</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="syarat">
+  <div class="wrap">
+    <div class="section-title">
+      <h2>Syarat &amp; Ketentuan Beban Bersama</h2>
+      <p>Simple aja, yang penting fair &amp; nyaman buat semua</p>
+    </div>
+    <div class="grid-2">
+      <div class="info-card">
+        <div class="icon-badge wallet">💰</div>
+        <h3>Siap Patungan Modalnya</h3>
+        <p>Bensin + e-Toll kita bagi rata. Kasihan dompet dan kartu e-Toll-ku kalau kudu nanggung
+        biaya tol sendirian.</p>
+      </div>
+      <div class="info-card">
+        <div class="icon-badge shield">🛡️</div>
+        <h3>Mental Baja &amp; Tahan Ujian</h3>
+        <p>Nggak gampang kaget/sengklek kalau kena drama macet tol atau halangan bongkar muat tadi.
+        Intinya: prinsip kita, santai di jalan, yang penting selamat dan tidak emosi.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="kalkulator">
+  <div class="wrap">
+    <div class="section-title">
+      <h2>🧮 Kalkulator Split Tagihan Mobil</h2>
+      <p>Hitung otomatis siapa bayar ke siapa, dengan netting utang-piutang antar orang.</p>
+    </div>
+
+    <div class="calc-toolbar">
+      <button class="btn-primary" onclick="addDay()">➕ Tambah Hari</button>
+      <div class="add-name-box">
+        <input type="text" id="newPersonInput" placeholder="Nama penumpang baru..." onkeydown="if(event.key==='Enter') addPersonToPool()">
+        <button class="btn-secondary" onclick="addPersonToPool()">➕ Tambah Orang</button>
+      </div>
+    </div>
+
+    <div class="people-pool" id="peoplePool"></div>
+
+    <div id="days"></div>
+
+    <div class="actions">
+      <button class="btn-secondary" onclick="hitung()">🧮 Hitung Tagihan</button>
+      <button class="btn-pdf" onclick="exportPDF()">📄 Export PDF</button>
+    </div>
+
+    <div id="hasil"></div>
+  </div>
+</section>
+
+<section id="join">
+  <div class="wrap">
+    <div class="cta-final">
+      <h3>Yang minat mau join rombongan hemat ini, langsung PM ya!</h3>
+      <p>Tempat terbatas 🚨 — buruan gabung sebelum kuota mobil penuh.</p>
+      <a href="https://wa.me/6281282529816?text=Halo%2C%20saya%20mau%20minta%20join%20grup%20WA%20Nebeng%20Planet%20Bekasi%20dong!" class="btn btn-primary">📩 PM Sekarang</a>
+    </div>
+  </div>
+</section>
+
+<footer>Dibuat untuk mempermudah split biaya trip mobil harian ✨</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+let NAMA_LIST = ['Herdi', 'Willy', 'Aldwin', 'Pasca', 'Fadil'];
+const HARI_LIST = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
+
+let dayCount = 0;
+let lastResult = null;
+let dayData = {}; // id -> { driver, pax: [] } to preserve selections when refreshing chips
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(showToast._timer);
+  showToast._timer = setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+/* ---------- PEOPLE POOL ---------- */
+function renderPeoplePool() {
+  const el = document.getElementById('peoplePool');
+  el.innerHTML = NAMA_LIST.map(n => `
+    <span class="pool-chip">👤 ${n} <button title="Hapus orang ini" onclick="removePersonFromPool('${n}')">✕</button></span>
+  `).join('');
+}
+
+function addPersonToPool() {
+  const input = document.getElementById('newPersonInput');
+  const name = input.value.trim();
+  if (!name) { showToast('⚠️ Isi nama dulu sebelum menambah orang.'); return; }
+  if (NAMA_LIST.includes(name)) { showToast('⚠️ Nama sudah ada di daftar.'); input.value=''; return; }
+  NAMA_LIST.push(name);
+  input.value = '';
+  renderPeoplePool();
+  refreshAllDaysOptions();
+  showToast(`✅ ${name} ditambahkan ke daftar penumpang.`);
+}
+
+function removePersonFromPool(name) {
+  if (!confirm(`Hapus "${name}" dari daftar orang? Ini akan menghapus pilihan dia di semua hari.`)) return;
+  NAMA_LIST = NAMA_LIST.filter(n => n !== name);
+  Object.keys(dayData).forEach(id => {
+    if (dayData[id].driver === name) dayData[id].driver = '';
+    dayData[id].pax = dayData[id].pax.filter(p => p !== name);
+  });
+  renderPeoplePool();
+  refreshAllDaysOptions();
+  showToast(`🗑️ ${name} dihapus dari daftar.`);
+}
+
+function refreshAllDaysOptions() {
+  document.querySelectorAll('.day-card').forEach(div => {
+    const id = div.id.split('-')[1];
+    const data = dayData[id] || { driver: '', pax: [] };
+    const driverSel = document.getElementById('driver-' + id);
+    const currentDriver = data.driver;
+    driverSel.innerHTML = buildDriverOptions(currentDriver);
+    const paxGroup = document.getElementById('pax-group-' + id);
+    paxGroup.innerHTML = buildPaxChips(id, data.pax);
+    refreshDriverPaxState(id);
+  });
+}
+
+/* ---------- BUILDERS ---------- */
+function buildHariOptions(selected) {
+  return HARI_LIST.map(h => `<option value="${h}" ${h===selected?'selected':''}>${h}</option>`).join('');
+}
+
+function buildDriverOptions(selected) {
+  return `<option value="">-- Pilih Sopir --</option>` +
+    NAMA_LIST.map(n => `<option value="${n}" ${n===selected?'selected':''}>${n}</option>`).join('');
+}
+
+function buildPaxChips(id, selectedList) {
+  return NAMA_LIST.map(n => {
+    const checked = selectedList.includes(n);
+    return `
+    <label class="pax-chip ${checked?'active':''}" id="chip-${id}-${n}" onclick="togglePax(${id},'${n}')">
+      <input type="checkbox" value="${n}" ${checked?'checked':''}>
+      ${n}
+    </label>`;
+  }).join('');
+}
+
+function togglePax(id, name) {
+  const chip = document.getElementById(`chip-${id}-${name}`);
+  if (!chip || chip.classList.contains('disabled')) return;
+  const cb = chip.querySelector('input');
+  cb.checked = !cb.checked;
+  chip.classList.toggle('active', cb.checked);
+  if (!dayData[id]) dayData[id] = { driver: '', pax: [] };
+  dayData[id].pax = getSelectedPax(id);
+}
+
+function refreshDriverPaxState(id) {
+  const driverSel = document.getElementById('driver-' + id);
+  const driver = driverSel.value;
+  if (!dayData[id]) dayData[id] = { driver: '', pax: [] };
+  dayData[id].driver = driver;
+  NAMA_LIST.forEach(n => {
+    const chip = document.getElementById(`chip-${id}-${n}`);
+    if (!chip) return;
+    if (n === driver) {
+      chip.classList.add('disabled');
+      chip.querySelector('input').checked = false;
+      chip.classList.remove('active');
+    } else {
+      chip.classList.remove('disabled');
+    }
+  });
+  dayData[id].pax = getSelectedPax(id);
+  clearDayValidation(id);
+}
+
+/* ---------- DAY CARD CRUD ---------- */
+function addDay(driver='', paxList=[], cost=96000, label=HARI_LIST[0]) {
+  dayCount++;
+  const id = dayCount;
+  dayData[id] = { driver, pax: paxList };
+  const div = document.createElement('div');
+  div.className = 'day-card';
+  div.id = 'day-' + id;
+  div.innerHTML = `
+    <h3>
+      <span>🗓️ Hari #${id}</span>
+      <button class="btn-danger" onclick="removeDay(${id})">Hapus</button>
+    </h3>
+    <div class="row">
+      <div>
+        <label>Hari</label>
+        <select id="label-${id}">${buildHariOptions(label)}</select>
+      </div>
+      <div>
+        <label>🚘 Sopir <span style="color:var(--danger)">*</span></label>
+        <select id="driver-${id}" onchange="refreshDriverPaxState(${id})">${buildDriverOptions(driver)}</select>
+        <div class="driver-warning" id="warn-${id}">⚠️ Pilih sopir dulu sebelum menghitung.</div>
+      </div>
+    </div>
+    <label>💰 Total Biaya (Rp)</label>
+    <input type="number" id="cost-${id}" value="${cost}">
+    <label>🧑‍🤝‍🧑 Penumpang</label>
+    <div class="pax-group" id="pax-group-${id}">${buildPaxChips(id, paxList)}</div>
+  `;
+  document.getElementById('days').appendChild(div);
+  refreshDriverPaxState(id);
+}
+
+function removeDay(id) {
+  const el = document.getElementById('day-' + id);
+  if (el) {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(-8px)';
+    setTimeout(() => el.remove(), 150);
+  }
+  delete dayData[id];
+}
+
+function getSelectedPax(id) {
+  const chips = document.querySelectorAll(`#pax-group-${id} .pax-chip input:checked`);
+  return Array.from(chips).map(c => c.value);
+}
+
+function clearDayValidation(id) {
+  const card = document.getElementById('day-' + id);
+  if (card) card.classList.remove('invalid');
+}
+
+/* ---------- VALIDATION: SOPIR WAJIB SEBELUM HITUNG ---------- */
+function validateBeforeHitung() {
+  const dayDivs = document.querySelectorAll('.day-card');
+  if (dayDivs.length === 0) {
+    showToast('⚠️ Tambah minimal satu hari dulu sebelum menghitung.');
+    return false;
+  }
+  let firstInvalid = null;
+  let anyValidDay = false;
+
+  dayDivs.forEach(div => {
+    const id = div.id.split('-')[1];
+    const cost = parseFloat(document.getElementById('cost-' + id).value) || 0;
+    const driver = document.getElementById('driver-' + id).value.trim();
+    if (cost > 0) {
+      if (!driver) {
+        div.classList.add('invalid');
+        if (!firstInvalid) firstInvalid = div;
+      } else {
+        div.classList.remove('invalid');
+        anyValidDay = true;
+      }
+    } else {
+      div.classList.remove('invalid');
+    }
+  });
+
+  if (firstInvalid) {
+    firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    showToast('⚠️ Ada hari yang belum diisi sopirnya. Pilih sopir dulu ya!');
+    return false;
+  }
+  if (!anyValidDay) {
+    showToast('⚠️ Belum ada hari valid (isi biaya & sopir dulu).');
+    return false;
+  }
+  return true;
+}
+
+/* ---------- HITUNG ---------- */
+function hitung() {
+  if (!validateBeforeHitung()) return;
+
+  const dayDivs = document.querySelectorAll('.day-card');
+  let net = {};
+  let detailRows = [];
+  let personTotalPaidUpfront = {};
+  let personTotalUsage = {};
+
+  function ensurePerson(name) {
+    if (!(name in personTotalPaidUpfront)) personTotalPaidUpfront[name] = 0;
+    if (!(name in personTotalUsage)) personTotalUsage[name] = 0;
+  }
+
+  function addDebt(from, to, amount) {
+    if (from === to || amount <= 0) return;
+    const key = [from, to].sort().join('|||');
+    if (!(key in net)) net[key] = 0;
+    const [p1] = key.split('|||');
+    if (from === p1) net[key] += amount;
+    else net[key] -= amount;
+  }
+
+  dayDivs.forEach(div => {
+    const id = div.id.split('-')[1];
+    const label = document.getElementById('label-' + id).value;
+    const driver = document.getElementById('driver-' + id).value.trim();
+    const passengers = getSelectedPax(id);
+    const cost = parseFloat(document.getElementById('cost-' + id).value) || 0;
+
+    if (!driver || cost <= 0) return;
+
+    const totalPeople = passengers.length + 1;
+    const perPerson = cost / totalPeople;
+
+    ensurePerson(driver);
+    personTotalPaidUpfront[driver] += cost;
+    personTotalUsage[driver] += perPerson;
+
+    passengers.forEach(p => {
+      ensurePerson(p);
+      personTotalUsage[p] += perPerson;
+      addDebt(p, driver, perPerson);
+      detailRows.push({ hari: label, dari: p, ke: driver, jumlah: perPerson });
+    });
+  });
+
+  let finalRows = [];
+  Object.keys(net).forEach(key => {
+    const [p1, p2] = key.split('|||');
+    let amount = net[key];
+    if (amount > 0.01) finalRows.push({ dari: p1, ke: p2, jumlah: amount });
+    else if (amount < -0.01) finalRows.push({ dari: p2, ke: p1, jumlah: -amount });
+  });
+
+  let netPosition = {};
+  Object.keys(personTotalPaidUpfront).forEach(p => netPosition[p] = 0);
+  finalRows.forEach(r => {
+    netPosition[r.dari] = (netPosition[r.dari] || 0) - r.jumlah;
+    netPosition[r.ke] = (netPosition[r.ke] || 0) + r.jumlah;
+  });
+
+  lastResult = { detailRows, finalRows, netPosition };
+  renderHasil(detailRows, finalRows, netPosition);
+  document.getElementById('hasil').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function fmtRupiah(n) {
+  return 'Rp' + Math.round(n).toLocaleString('id-ID');
+}
+
+function renderHasil(detailRows, finalRows, netPosition) {
+  let html = '';
+
+  html += `<div class="result-section"><h2>📄 Detail Utang per Hari</h2>`;
+  if (detailRows.length === 0) {
+    html += `<div class="empty-state">Belum ada data. Isi form di atas dulu ya 🙂</div>`;
+  } else {
+    html += '<table><tr><th>Hari</th><th>Dari</th><th>Ke</th><th>Jumlah</th></tr>';
+    detailRows.forEach(r => {
+      html += `<tr><td>${r.hari}</td><td>${r.dari}</td><td>${r.ke}</td><td>${fmtRupiah(r.jumlah)}</td></tr>`;
+    });
+    html += '</table>';
+  }
+  html += '</div>';
+
+  html += `<div class="result-section"><h2>✅ Tabel Tagihan Final (Sudah Netting)</h2>`;
+  if (finalRows.length === 0) {
+    html += `<div class="empty-state">Tidak ada tagihan — semua impas 🎉</div>`;
+  } else {
+    html += '<table><tr><th>Pembayar</th><th>Penerima</th><th>Jumlah</th></tr>';
+    finalRows.sort((a,b) => b.jumlah - a.jumlah).forEach(r => {
+      html += `<tr class="final-row"><td>${r.dari}</td><td>${r.ke}</td><td>${fmtRupiah(r.jumlah)}</td></tr>`;
+    });
+    html += '</table>';
+  }
+  html += '</div>';
+
+  html += `<div class="result-section"><h2>📊 Ringkasan Posisi per Orang</h2>`;
+  html += '<table><tr><th>Nama</th><th>Posisi Net</th><th>Status</th></tr>';
+  Object.keys(netPosition).sort((a,b)=>netPosition[b]-netPosition[a]).forEach(p => {
+    const val = netPosition[p];
+    let badge;
+    if (val > 0.01) badge = `<span class="badge badge-receive">Menerima</span>`;
+    else if (val < -0.01) badge = `<span class="badge badge-pay">Membayar</span>`;
+    else badge = `<span class="badge badge-even">Impas</span>`;
+    html += `<tr><td>${p}</td><td>${fmtRupiah(Math.abs(val))}</td><td>${badge}</td></tr>`;
+  });
+  html += '</table></div>';
+
+  document.getElementById('hasil').innerHTML = html;
+}
+
+function exportPDF() {
+  if (typeof window.jspdf === 'undefined') {
+    showToast('⚠️ Library PDF belum termuat. Cek koneksi internet, lalu refresh halaman.');
+    return;
+  }
+
+  if (!lastResult) {
+    if (!validateBeforeHitung()) return;
+    hitung();
+  }
+  if (!lastResult || lastResult.detailRows.length === 0) {
+    showToast('⚠️ Hitung dulu datanya sebelum export PDF ya 🙂');
+    return;
+  }
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'mm', format: 'a4', compress: true });
+
+  let y = 15;
+  const left = 14;
+  const lineH = 5.2;
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(13);
+  doc.text('Split Tagihan Mobil - Planet Bekasi Express', left, y);
+  y += 7;
+
+  doc.setFontSize(9);
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(90);
+  doc.text('Rincian utang-piutang antar penumpang & sopir', left, y);
+  y += 8;
+  doc.setTextColor(0);
+
+  function sectionTitle(title) {
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(10.5);
+    doc.text(title, left, y);
+    y += 5.5;
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+  }
+
+  function tableSimple(headers, rows, colWidths) {
+    let x = left;
+    doc.setFont('helvetica', 'bold');
+    headers.forEach((h, i) => { doc.text(h, x, y); x += colWidths[i]; });
+    y += lineH;
+    doc.setDrawColor(200);
+    doc.line(left, y - 3.5, left + colWidths.reduce((a,b)=>a+b,0), y - 3.5);
+    doc.setFont('helvetica', 'normal');
+    rows.forEach(row => {
+      if (y > 280) { doc.addPage(); y = 15; }
+      x = left;
+      row.forEach((cell, i) => { doc.text(String(cell), x, y); x += colWidths[i]; });
+      y += lineH;
+    });
+    y += 4;
+  }
+
+  sectionTitle('Detail Utang per Hari');
+  tableSimple(
+    ['Hari', 'Dari', 'Ke', 'Jumlah'],
+    lastResult.detailRows.map(r => [r.hari, r.dari, r.ke, fmtRupiah(r.jumlah)]),
+    [25, 40, 40, 35]
+  );
+
+  sectionTitle('Tagihan Final (Netting)');
+  if (lastResult.finalRows.length === 0) {
+    doc.text('Semua impas, tidak ada tagihan.', left, y);
+    y += 7;
+  } else {
+    tableSimple(
+      ['Pembayar', 'Penerima', 'Jumlah'],
+      lastResult.finalRows.map(r => [r.dari, r.ke, fmtRupiah(r.jumlah)]),
+      [45, 45, 40]
+    );
+  }
+
+  sectionTitle('Ringkasan Posisi per Orang');
+  const posRows = Object.keys(lastResult.netPosition)
+    .sort((a,b)=>lastResult.netPosition[b]-lastResult.netPosition[a])
+    .map(p => {
+      const val = lastResult.netPosition[p];
+      let status = 'Impas';
+      if (val > 0.01) status = 'Menerima';
+      else if (val < -0.01) status = 'Membayar';
+      return [p, fmtRupiah(Math.abs(val)), status];
+    });
+  tableSimple(['Nama', 'Jumlah', 'Status'], posRows, [45, 45, 40]);
+
+  doc.setFontSize(7.5);
+  doc.setTextColor(140);
+  doc.text('Dibuat otomatis oleh Kalkulator Split Tagihan Mobil - Nebeng Planet Bekasi', left, 292);
+
+  doc.save('split-tagihan-mobil.pdf');
+}
+
+/* ---------- NAV ACTIVE STATE ---------- */
+function setupNavHighlight() {
+  const links = document.querySelectorAll('nav .menu a[href^="#"]');
+  const sections = Array.from(links).map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      const rect = sec.getBoundingClientRect();
+      if (rect.top <= 100) current = '#' + sec.id;
+    });
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === current));
+  }, { passive: true });
+}
+
+/* ---------- INIT ---------- */
+renderPeoplePool();
+addDay('Pasca', ['Herdi', 'Aldwin'], 96000, 'Selasa');
+addDay('Aldwin', ['Herdi', 'Pasca', 'Fadil'], 96000, 'Rabu');
+setupNavHighlight();
+</script>
+
+</body>
+</html>
