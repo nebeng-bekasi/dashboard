@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f1220">
   <title>Nebeng Bareng — Planet Bekasi Express</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚗</text></svg>">
 
   <style>
     :root {
+      color-scheme: dark;
       --bg: #0f1220;
       --card: #1a1e33;
       --primary: #6366f1;
@@ -17,7 +19,7 @@
       --warning: #fbbf24;
       --text: #e2e4f3;
       --muted: #a5add1;
-      --border: rgba(255,255,255,.1);
+      --border: rgba(255, 255, 255, .1);
       --radius: 14px;
     }
 
@@ -47,7 +49,7 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(11,13,26,.94);
+      background: rgba(11, 13, 26, .94);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
     }
@@ -61,11 +63,7 @@
       padding-bottom: 14px;
     }
 
-    .brand {
-      font-size: 17px;
-      font-weight: 800;
-    }
-
+    .brand { font-size: 17px; font-weight: 800; }
     .brand span { color: var(--accent); }
 
     .menu {
@@ -84,7 +82,7 @@
 
     .menu a:hover {
       color: var(--text);
-      background: rgba(99,102,241,.15);
+      background: rgba(99, 102, 241, .15);
     }
 
     section { padding: 46px 0; }
@@ -96,7 +94,7 @@
 
     .badge-hero {
       display: inline-block;
-      background: rgba(251,191,36,.12);
+      background: rgba(251, 191, 36, .12);
       color: var(--warning);
       padding: 6px 16px;
       border-radius: 30px;
@@ -151,10 +149,7 @@
       margin-bottom: 28px;
     }
 
-    .section-title h2 {
-      margin: 0 0 8px;
-      font-size: 26px;
-    }
+    .section-title h2 { margin: 0 0 8px; font-size: 26px; }
 
     .section-title p,
     .info-card p,
@@ -185,7 +180,7 @@
       place-items: center;
       border-radius: 12px;
       font-size: 22px;
-      background: rgba(99,102,241,.18);
+      background: rgba(99, 102, 241, .18);
       margin-bottom: 12px;
     }
 
@@ -195,10 +190,10 @@
       text-align: center;
       background: linear-gradient(
         135deg,
-        rgba(99,102,241,.18),
-        rgba(34,211,238,.1)
+        rgba(99, 102, 241, .18),
+        rgba(34, 211, 238, .1)
       );
-      border: 1px solid rgba(99,102,241,.3);
+      border: 1px solid rgba(99, 102, 241, .3);
       border-radius: var(--radius);
       padding: 30px 20px;
     }
@@ -226,63 +221,42 @@
     button:hover,
     .btn:hover { filter: brightness(1.1); }
 
-    button:disabled {
-      opacity: .55;
-      cursor: wait;
-    }
+    button:disabled { opacity: .55; cursor: wait; }
 
     button:focus-visible,
     a:focus-visible,
     input:focus-visible,
-    select:focus-visible {
+    select:focus-visible,
+    .table-scroll:focus-visible {
       outline: 3px solid var(--accent);
       outline-offset: 3px;
     }
 
-    .btn-primary {
-      background: #6366f1;
-      color: white;
-    }
-
-    .btn-secondary {
-      background: #2a3050;
-      color: var(--text);
-    }
-
-    .btn-pdf {
-      background: #dc4937;
-      color: white;
-    }
-
-    .btn-png {
-      background: #34d399;
-      color: #07352b;
-    }
+    .btn-primary { background: #6366f1; color: white; }
+    .btn-secondary { background: #2a3050; color: var(--text); }
+    .btn-pdf { background: #dc4937; color: white; }
+    .btn-png { background: #34d399; color: #07352b; }
 
     .btn-danger {
       padding: 5px 10px;
       background: transparent;
       color: var(--danger);
-      border-color: rgba(248,113,113,.35);
+      border-color: rgba(248, 113, 113, .35);
       font-size: 12px;
     }
 
     .week-banner {
       margin-bottom: 20px;
       padding: 14px 16px;
-      background: rgba(34,211,238,.07);
-      border: 1px solid rgba(34,211,238,.2);
+      background: rgba(34, 211, 238, .07);
+      border: 1px solid rgba(34, 211, 238, .2);
       border-radius: 10px;
       font-size: 13px;
       color: var(--muted);
     }
 
     .week-banner strong { color: var(--accent); }
-
-    .week-banner small {
-      display: block;
-      margin-top: 4px;
-    }
+    .week-banner small { display: block; margin-top: 4px; }
 
     .calc-toolbar {
       display: flex;
@@ -340,7 +314,6 @@
     }
 
     .day-card { margin-bottom: 16px; }
-
     .day-card.invalid { border-color: var(--danger); }
 
     .day-card h3 {
@@ -381,11 +354,7 @@
       margin-bottom: 8px;
     }
 
-    .pax-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
+    .pax-group { display: flex; flex-wrap: wrap; gap: 8px; }
 
     .pax-chip {
       display: inline-flex;
@@ -400,20 +369,14 @@
       overflow-wrap: anywhere;
     }
 
-    .pax-chip input {
-      margin: 0;
-      accent-color: var(--primary);
-    }
+    .pax-chip input { margin: 0; accent-color: var(--primary); }
 
     .pax-chip.active {
-      background: rgba(99,102,241,.2);
+      background: rgba(99, 102, 241, .2);
       border-color: var(--primary);
     }
 
-    .pax-chip.disabled {
-      opacity: .4;
-      cursor: not-allowed;
-    }
+    .pax-chip.disabled { opacity: .4; cursor: not-allowed; }
 
     .day-error {
       color: var(--danger);
@@ -422,12 +385,7 @@
     }
 
     .actions { margin: 22px 0 12px; }
-
-    .hint {
-      font-size: 12px;
-      color: var(--muted);
-    }
-
+    .hint { font-size: 12px; color: var(--muted); }
     .result-section { margin-top: 18px; }
 
     .result-section h2 {
@@ -440,8 +398,9 @@
 
     table {
       border-collapse: collapse;
+      table-layout: fixed;
       width: 100%;
-      min-width: 430px;
+      min-width: 540px;
       font-size: 14px;
     }
 
@@ -451,7 +410,10 @@
       text-align: left;
       border-bottom: 1px solid var(--border);
       overflow-wrap: anywhere;
+      vertical-align: top;
     }
+
+    td { white-space: pre-line; }
 
     th {
       background: #12162a;
@@ -466,15 +428,12 @@
     }
 
     .final-table td { color: var(--warning); }
-
+    .daily-table td:first-child { color: var(--accent); font-weight: 600; }
     .status-receive { color: var(--success); }
     .status-pay { color: var(--danger); }
     .status-even { color: var(--muted); }
 
-    .empty-state {
-      padding: 16px 0;
-      color: var(--muted);
-    }
+    .empty-state { padding: 16px 0; color: var(--muted); }
 
     .toast {
       position: fixed;
@@ -487,7 +446,7 @@
       border-radius: 10px;
       color: white;
       background: #b93838;
-      box-shadow: 0 8px 24px rgba(0,0,0,.3);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .3);
       opacity: 0;
       pointer-events: none;
       transition: opacity .2s;
@@ -621,7 +580,7 @@
       <div class="wrap">
         <div class="section-title">
           <h2>🧮 Kalkulator Split Tagihan Mobil</h2>
-          <p>Hitung siapa bayar ke siapa, dengan netting utang-piutang antar orang.</p>
+          <p>Ringkasan perjalanan harian dan tagihan patungan dalam satu tempat.</p>
         </div>
 
         <div class="week-banner">
@@ -657,10 +616,12 @@
         </div>
 
         <p class="hint">
-          Sopir ikut menanggung biaya dan dianggap membayar biaya perjalanan
-          di muka. Sisa pembagian rupiah dibagikan Rp1 sesuai urutan peserta,
-          dimulai dari sopir. Netting dilakukan per pasangan orang.
-          Export selalu memakai data terbaru.
+          Sopir ikut menanggung biaya dan dianggap membayar perjalanan di muka.
+          Sisa pembagian dibagikan Rp1 sesuai urutan peserta, dimulai dari sopir.
+          Netting dilakukan per pasangan orang.
+          Ringkasan sopir dan penumpang ikut export; detail utang individual
+          hanya tampil di halaman. Export selalu memakai data terbaru.
+          Hapus kartu hari yang tidak ada perjalanan.
         </p>
 
         <div id="hasil"></div>
@@ -700,10 +661,10 @@
       maximumFractionDigits: 0
     });
 
+    const $ = id => document.getElementById(id);
+
     let nextDayId = 0;
     let toastTimer;
-
-    const $ = id => document.getElementById(id);
 
     function createElement(tag, className = "", text) {
       const element = document.createElement(tag);
@@ -716,11 +677,23 @@
       return "Rp" + rupiahFormatter.format(value);
     }
 
+    function scrollToElement(element, block = "start") {
+      const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      element.scrollIntoView({
+        behavior: reducedMotion ? "auto" : "smooth",
+        block
+      });
+    }
+
     function showToast(message, success = false) {
       const toast = $("toast");
       toast.textContent = message;
       toast.classList.toggle("ok", success);
       toast.classList.add("show");
+
       clearTimeout(toastTimer);
       toastTimer = setTimeout(() => toast.classList.remove("show"), 3500);
     }
@@ -729,10 +702,9 @@
       $("hasil").replaceChildren();
     }
 
-    /* ---------- PERIODE BERDASARKAN TANGGAL LOKAL DEVICE ---------- */
+    /* ---------- PERIODE MINGGU KERJA LOKAL ---------- */
 
     function getWorkWeek(reference = new Date()) {
-      // Jam 12 lokal menghindari ketergantungan pada tanggal UTC.
       const monday = new Date(
         reference.getFullYear(),
         reference.getMonth(),
@@ -813,8 +785,9 @@
         return;
       }
 
+      const normalized = name.toLocaleLowerCase("id-ID");
       if (people.some(person =>
-        person.toLocaleLowerCase("id-ID") === name.toLocaleLowerCase("id-ID")
+        person.toLocaleLowerCase("id-ID") === normalized
       )) {
         showToast("Nama tersebut sudah ada.");
         return;
@@ -833,6 +806,7 @@
 
       const index = people.indexOf(name);
       if (index < 0) return;
+
       people.splice(index, 1);
 
       for (const state of dayStates.values()) {
@@ -910,13 +884,14 @@
       const card = createElement("div", "day-card");
       card.id = "day-" + id;
 
-      // Template hanya berisi ID numerik buatan aplikasi.
-      // Nama pengguna selalu dimasukkan lewat textContent atau Option.
+      // Hanya ID numerik aplikasi yang dimasukkan ke template.
+      // Nama pengguna dimasukkan melalui textContent atau Option.
       card.innerHTML = `
         <h3>
-          <span>🗓️ Perjalanan #${id}</span>
+          <span id="title-${id}"></span>
           <button type="button" class="btn-danger" id="remove-${id}">Hapus</button>
         </h3>
+
         <div class="row">
           <div>
             <label class="field-label" for="label-${id}">Hari</label>
@@ -927,6 +902,7 @@
             <select id="driver-${id}" aria-describedby="error-${id}"></select>
           </div>
         </div>
+
         <label class="field-label" for="cost-${id}">💰 Total biaya (Rp)</label>
         <input
           id="cost-${id}"
@@ -937,18 +913,28 @@
           inputmode="numeric"
           aria-describedby="error-${id}"
         >
+
         <fieldset>
           <legend>🧑‍🤝‍🧑 Penumpang — selain sopir</legend>
           <div class="pax-group" id="pax-${id}"></div>
         </fieldset>
+
         <p class="day-error" id="error-${id}" aria-live="polite"></p>
       `;
 
       $("days").append(card);
 
-      for (const name of DAYS) $("label-" + id).add(new Option(name, name));
-      $("label-" + id).value = day;
+      const daySelect = $("label-" + id);
+      for (const name of DAYS) daySelect.add(new Option(name, name));
+      daySelect.value = day;
       $("cost-" + id).value = String(cost);
+
+      function updateTitle() {
+        $("title-" + id).textContent =
+          `🗓️ ${daySelect.value} — Perjalanan #${id}`;
+      }
+
+      updateTitle();
 
       $("remove-" + id).addEventListener("click", () => {
         dayStates.delete(id);
@@ -964,7 +950,10 @@
         invalidateResult();
       });
 
-      $("label-" + id).addEventListener("change", invalidateResult);
+      daySelect.addEventListener("change", () => {
+        updateTitle();
+        invalidateResult();
+      });
 
       $("cost-" + id).addEventListener("input", () => {
         clearDayError(state);
@@ -975,7 +964,7 @@
       invalidateResult();
     }
 
-    /* ---------- VALIDASI DAN PERHITUNGAN ---------- */
+    /* ---------- VALIDASI ---------- */
 
     function readTrips() {
       if (!dayStates.size) {
@@ -984,6 +973,7 @@
       }
 
       const trips = [];
+      const validPeople = new Set(people);
       let firstInvalid = null;
       let totalCost = 0;
 
@@ -992,9 +982,10 @@
 
         const costInput = $("cost-" + state.id);
         const cost = costInput.valueAsNumber;
+        const day = $("label-" + state.id).value;
         let message = "";
 
-        if (!state.driver) {
+        if (!state.driver || !validPeople.has(state.driver)) {
           message = "Pilih sopir terlebih dahulu.";
           $("driver-" + state.id).setAttribute("aria-invalid", "true");
         } else if (
@@ -1002,8 +993,10 @@
           cost <= 0 ||
           cost > 1000000000000
         ) {
-          message = "Isi biaya berupa rupiah utuh, lebih dari 0, maksimal Rp1 triliun.";
+          message = "Isi biaya rupiah utuh, lebih dari 0, maksimal Rp1 triliun.";
           costInput.setAttribute("aria-invalid", "true");
+        } else if (!DAYS.includes(day)) {
+          message = "Pilih hari yang valid.";
         }
 
         if (message) {
@@ -1017,7 +1010,7 @@
         totalCost += cost;
 
         trips.push({
-          day: $("label-" + state.id).value,
+          day,
           driver: state.driver,
           passengers: people.filter(name =>
             name !== state.driver && state.passengers.has(name)
@@ -1027,7 +1020,7 @@
       }
 
       if (firstInvalid) {
-        firstInvalid.scrollIntoView({ block: "center", behavior: "smooth" });
+        scrollToElement(firstInvalid, "center");
         showToast("Periksa isian perjalanan yang ditandai merah.");
         return null;
       }
@@ -1039,6 +1032,8 @@
 
       return trips;
     }
+
+    /* ---------- PERHITUNGAN ---------- */
 
     function calculate(trips) {
       const pairs = new Map();
@@ -1054,10 +1049,10 @@
         if (amount === 0) return;
 
         const names = from < to ? [from, to] : [to, from];
-        // JSON menghindari benturan nama yang mengandung separator.
         const key = JSON.stringify(names);
         const sign = from === names[0] ? 1 : -1;
         const pair = pairs.get(key) || { names, amount: 0 };
+
         pair.amount += sign * amount;
         pairs.set(key, pair);
       }
@@ -1070,10 +1065,8 @@
         totalCost += trip.cost;
         ensurePerson(trip.driver);
 
-        for (let index = 0; index < participants.length; index++) {
-          const name = participants[index];
+        participants.forEach((name, index) => {
           const amount = share + (index < remainder ? 1 : 0);
-
           ensurePerson(name);
 
           if (name !== trip.driver) {
@@ -1085,7 +1078,7 @@
               amount
             });
           }
-        }
+        });
       }
 
       const finalRows = [];
@@ -1112,6 +1105,7 @@
       })).sort((a, b) => b.amount - a.amount);
 
       return {
+        trips,
         detailRows,
         finalRows,
         summary,
@@ -1121,8 +1115,56 @@
       };
     }
 
+    /* ---------- TABEL HASIL DAN EXPORT ---------- */
+
     function buildTables(result, includeDetails = true) {
+      const tripsByDay = new Map();
+
+      for (const trip of result.trips) {
+        if (!tripsByDay.has(trip.day)) tripsByDay.set(trip.day, []);
+        tripsByDay.get(trip.day).push(trip);
+      }
+
+      const dailyRows = [];
+
+      for (const day of DAYS) {
+        const dayTrips = tripsByDay.get(day);
+        if (!dayTrips) continue;
+
+        const multipleTrips = dayTrips.length > 1;
+        const drivers = [];
+        const passengers = [];
+
+        dayTrips.forEach((trip, index) => {
+          const prefix = multipleTrips ? `#${index + 1} ` : "";
+
+          drivers.push(prefix + trip.driver);
+          passengers.push(
+            prefix + (
+              trip.passengers.length
+                ? trip.passengers.join(", ")
+                : "Tidak ada penumpang"
+            )
+          );
+        });
+
+        dailyRows.push([
+          day,
+          drivers.join("\n"),
+          passengers.join("\n")
+        ]);
+      }
+
       const tables = [
+        {
+          title: "Ringkasan Perjalanan per Hari",
+          headers: ["Hari", "Mobil", "Penumpang"],
+          widths: [.18, .24, .58],
+          moneyColumn: -1,
+          kind: "daily",
+          empty: "Belum ada perjalanan.",
+          rows: dailyRows
+        },
         {
           title: "Tagihan Final",
           headers: ["Pembayar", "Penerima", "Jumlah"],
@@ -1147,7 +1189,7 @@
         }
       ];
 
-      // Detail hanya dibuat untuk tampilan halaman, bukan export.
+      // Hanya detail utang individual yang tidak ikut export.
       if (includeDetails) {
         tables.push({
           title: "Detail Utang per Hari",
@@ -1168,7 +1210,7 @@
     function renderResult(result) {
       const fragment = document.createDocumentFragment();
 
-      for (const definition of buildTables(result)) {
+      for (const definition of buildTables(result, true)) {
         const section = createElement("div", "result-section");
         section.append(createElement("h2", "", definition.title));
 
@@ -1179,12 +1221,26 @@
         }
 
         const scroll = createElement("div", "table-scroll");
-        const table = createElement(
-          "table",
-          definition.kind === "final" ? "final-table" : ""
-        );
+        scroll.tabIndex = 0;
+        scroll.setAttribute("role", "region");
+        scroll.setAttribute("aria-label", definition.title);
+
+        const table = createElement("table");
+        table.setAttribute("aria-label", definition.title);
+
+        if (definition.kind === "final") table.classList.add("final-table");
+        if (definition.kind === "daily") table.classList.add("daily-table");
+
+        const colgroup = document.createElement("colgroup");
+        for (const width of definition.widths) {
+          const col = document.createElement("col");
+          col.style.width = `${width * 100}%`;
+          colgroup.append(col);
+        }
+        table.append(colgroup);
 
         const head = table.createTHead().insertRow();
+
         definition.headers.forEach((label, index) => {
           const th = createElement("th", "", label);
           th.scope = "col";
@@ -1214,6 +1270,15 @@
 
         scroll.append(table);
         section.append(scroll);
+
+        if (definition.kind === "daily") {
+          section.append(createElement(
+            "p",
+            "hint",
+            "Penumpang tidak termasuk sopir. Jika satu hari berisi beberapa perjalanan, nomor #1, #2, dan seterusnya menghubungkan sopir dengan penumpangnya."
+          ));
+        }
+
         fragment.append(section);
       }
 
@@ -1224,17 +1289,16 @@
       const trips = readTrips();
       if (!trips) return null;
 
-      // Selalu dihitung ulang, tidak menggunakan hasil export lama.
       const result = calculate(trips);
-      renderResult(result);
-
       const week = getWorkWeek();
+
+      renderResult(result);
       refreshWeekBanner(week);
 
       return { result, week };
     }
 
-    /* ---------- EXPORT PNG: LAYOUT CANVAS ---------- */
+    /* ---------- EXPORT PNG ---------- */
 
     const REPORT = {
       width: 1000,
@@ -1253,9 +1317,8 @@
 
     function wrapCanvasText(context, text, maxWidth) {
       const lines = [];
-      const paragraphs = String(text).split(/\r?\n/);
 
-      for (const paragraph of paragraphs) {
+      for (const paragraph of String(text).split(/\r?\n/)) {
         let line = "";
 
         for (const word of paragraph.split(/\s+/).filter(Boolean)) {
@@ -1276,9 +1339,9 @@
             continue;
           }
 
-          // Nama panjang tanpa spasi tetap dibungkus.
           for (const character of word) {
             const candidatePart = line + character;
+
             if (line && context.measureText(candidatePart).width > maxWidth) {
               lines.push(line);
               line = character;
@@ -1298,39 +1361,37 @@
       const width = REPORT.width - REPORT.padding * 2;
       let y = 230;
 
-      const layout = tables.map(table => {
+      const measuredTables = tables.map(table => {
         const titleY = y;
         const headerY = titleY + 40;
         let rowY = headerY + 42;
 
-        const rows = table.rows.length ? table.rows : [[table.empty]];
-        const measuredRows = rows.map(values => {
+        const valuesList = table.rows.length ? table.rows : [[table.empty]];
+
+        const rows = valuesList.map(values => {
           const empty = table.rows.length === 0;
 
           const cells = values.map((value, column) => {
-            setCanvasFont(
-              context,
-              17,
-              column === table.moneyColumn && !empty ? 700 : 400
-            );
+            const isMoney = !empty && column === table.moneyColumn;
+            setCanvasFont(context, 17, isMoney ? 700 : 400);
 
             const cellWidth = empty ? width : width * table.widths[column];
             return wrapCanvasText(context, value, cellWidth - 32);
           });
 
-          const lineCount = Math.max(...cells.map(lines => lines.length));
-          const height = Math.max(52, lineCount * 24 + 24);
+          const maxLines = Math.max(...cells.map(lines => lines.length));
+          const height = Math.max(52, maxLines * 24 + 24);
           const row = { cells, y: rowY, height, empty, values };
+
           rowY += height;
           return row;
         });
 
-        const section = { ...table, titleY, headerY, rows: measuredRows };
         y = rowY + 34;
-        return section;
+        return { ...table, titleY, headerY, rows };
       });
 
-      return { tables: layout, height: y + 72 };
+      return { tables: measuredTables, height: y + 96 };
     }
 
     function roundedRect(context, x, y, width, height, radius) {
@@ -1352,6 +1413,7 @@
       context.fillStyle = REPORT.background;
       context.fillRect(0, 0, width, layout.height);
       context.textBaseline = "middle";
+      context.textAlign = "left";
 
       context.fillStyle = REPORT.accent;
       roundedRect(context, padding, 38, 5, 83, 2);
@@ -1396,36 +1458,36 @@
         setCanvasFont(context, 21, 700);
         context.fillText(table.title, padding, table.titleY + 13);
 
-        const bottom = table.rows.at(-1).y + table.rows.at(-1).height;
+        const lastRow = table.rows[table.rows.length - 1];
+        const bottom = lastRow.y + lastRow.height;
 
         context.save();
         context.fillStyle = "#ffffff";
         roundedRect(
-          context,
-          padding,
-          table.headerY,
-          innerWidth,
-          bottom - table.headerY,
-          12
+          context, padding, table.headerY,
+          innerWidth, bottom - table.headerY, 12
         );
         context.clip();
 
-        context.fillStyle = table.kind === "final" ? "#e9e8ff" : "#e2e8f0";
+        context.fillStyle =
+          table.kind === "final" ? "#e9e8ff" :
+          table.kind === "daily" ? "#dff2f5" : "#e2e8f0";
+
         context.fillRect(padding, table.headerY, innerWidth, 42);
 
         let x = padding;
 
         table.headers.forEach((header, column) => {
           const cellWidth = innerWidth * table.widths[column];
-          const rightAligned = column === table.moneyColumn;
+          const right = column === table.moneyColumn;
 
           context.fillStyle = "#475569";
-          context.textAlign = rightAligned ? "right" : "left";
+          context.textAlign = right ? "right" : "left";
           setCanvasFont(context, 13, 700);
 
           context.fillText(
             header.toUpperCase(),
-            rightAligned ? x + cellWidth - 16 : x + 16,
+            right ? x + cellWidth - 16 : x + 16,
             table.headerY + 21
           );
 
@@ -1452,7 +1514,6 @@
               : innerWidth * table.widths[column];
 
             const isMoney = !row.empty && column === table.moneyColumn;
-
             context.textAlign = isMoney ? "right" : "left";
             context.fillStyle = row.empty ? REPORT.muted : REPORT.text;
 
@@ -1460,10 +1521,14 @@
               context.fillStyle = REPORT.accent;
             }
 
+            if (table.kind === "daily" && column === 0 && !row.empty) {
+              context.fillStyle = "#0e7490";
+            }
+
             if (table.kind === "summary" && column === 2 && !row.empty) {
-              context.fillStyle = row.values[2] === "Menerima"
-                ? "#047857"
-                : row.values[2] === "Membayar" ? "#be123c" : REPORT.muted;
+              context.fillStyle =
+                row.values[2] === "Menerima" ? "#047857" :
+                row.values[2] === "Membayar" ? "#be123c" : REPORT.muted;
             }
 
             setCanvasFont(context, 17, isMoney ? 700 : 400);
@@ -1488,11 +1553,15 @@
       setCanvasFont(context, 13);
 
       context.fillText(
+        "Penumpang tidak termasuk sopir; #1, #2 menghubungkan perjalanan pada hari yang sama.",
+        padding,
+        layout.height - 70
+      );
+      context.fillText(
         "Biaya dibagi termasuk sopir. Tagihan final sudah dinetting per pasangan.",
         padding,
         layout.height - 47
       );
-
       context.fillText(
         "Nebeng bareng, patungan jelas.",
         padding,
@@ -1510,7 +1579,6 @@
       link.click();
       link.remove();
 
-      // Jangan revoke langsung, beri browser waktu membaca Blob.
       setTimeout(() => URL.revokeObjectURL(url), 60000);
     }
 
@@ -1529,12 +1597,11 @@
 
         canvas = document.createElement("canvas");
         let context = canvas.getContext("2d");
-
         if (!context) throw new Error("Canvas tidak tersedia pada browser ini.");
 
         const layout = measureReport(context, buildTables(result, false));
 
-        // Batasi dimensi dan jumlah pixel agar pemakaian memori terkendali.
+        // Batas dimensi dan luas pixel untuk mengendalikan memori.
         const scale = Math.min(
           2,
           8000 / layout.height,
@@ -1545,22 +1612,24 @@
           throw new Error("Data terlalu panjang untuk satu PNG. Gunakan export PDF.");
         }
 
-        canvas.width = Math.ceil(REPORT.width * scale);
-        canvas.height = Math.ceil(layout.height * scale);
+        canvas.width = Math.floor(REPORT.width * scale);
+        canvas.height = Math.floor(layout.height * scale);
 
         context = canvas.getContext("2d");
         if (!context) throw new Error("Gagal menyiapkan canvas.");
 
-        context.scale(scale, scale);
+        context.scale(
+          canvas.width / REPORT.width,
+          canvas.height / layout.height
+        );
+
         drawReport(context, layout, result, week);
 
         const blob = await new Promise((resolve, reject) => {
-          canvas.toBlob(
-            value => value
-              ? resolve(value)
-              : reject(new Error("Gagal membuat gambar. Coba gunakan PDF.")),
-            "image/png"
-          );
+          canvas.toBlob(value => {
+            if (value) resolve(value);
+            else reject(new Error("Gagal membuat gambar. Coba gunakan PDF."));
+          }, "image/png");
         });
 
         downloadBlob(blob, week.slug + ".png");
@@ -1579,7 +1648,7 @@
       }
     }
 
-    /* ---------- EXPORT PDF: TABEL DAN PAGINASI ---------- */
+    /* ---------- EXPORT PDF ---------- */
 
     function exportPDF() {
       if (!window.jspdf?.jsPDF) {
@@ -1605,37 +1674,53 @@
         const pageWidth = 210;
         const contentWidth = pageWidth - margin * 2;
         const bottomLimit = 278;
+        const lineHeight = 4.5;
         let y = 0;
 
         function drawPageHeading(firstPage) {
-          doc.setTextColor(79, 70, 229);
           doc.setFont("helvetica", "bold");
           doc.setFontSize(10);
+          doc.setTextColor(79, 70, 229);
           doc.text("PLANET BEKASI EXPRESS", margin, 17);
 
-          doc.setTextColor(23, 37, 61);
           doc.setFontSize(firstPage ? 17 : 13);
+          doc.setTextColor(23, 37, 61);
           doc.text("Rekap Patungan Mingguan", margin, 26);
 
           doc.setFont("helvetica", "normal");
-          doc.setTextColor(100, 116, 139);
           doc.setFontSize(9);
-
-          // Font PDF bawaan memakai tanda hubung sederhana.
+          doc.setTextColor(100, 116, 139);
           doc.text("Periode " + week.label.replace(/–/g, "-"), margin, 33);
           y = 43;
 
           if (firstPage) {
             doc.setFillColor(241, 245, 249);
             doc.roundedRect(margin, y, contentWidth, 17, 2, 2, "F");
-            doc.setTextColor(23, 37, 61);
+
             doc.setFontSize(9);
+            doc.setTextColor(23, 37, 61);
             doc.text(
               `Total biaya: ${money(result.totalCost)} | Perjalanan: ${result.tripCount} | Peserta: ${result.personCount}`,
               margin + 4,
               y + 10
             );
-            y += 25;
+
+            y += 24;
+
+            doc.setFontSize(8);
+            doc.setTextColor(100, 116, 139);
+
+            const note = doc.splitTextToSize(
+              "Penumpang tidak termasuk sopir. Nomor #1, #2 menghubungkan sopir dan penumpang untuk beberapa perjalanan pada hari yang sama.",
+              contentWidth
+            );
+
+            note.forEach(line => {
+              doc.text(line, margin, y);
+              y += 4;
+            });
+
+            y += 6;
           }
         }
 
@@ -1655,18 +1740,18 @@
             margin,
             y
           );
+
           y += 5;
 
-          doc.setFillColor(
-            table.kind === "final" ? 233 : 226,
-            table.kind === "final" ? 232 : 232,
-            table.kind === "final" ? 255 : 240
-          );
-          doc.rect(margin, y, contentWidth, 9, "F");
+          if (table.kind === "final") doc.setFillColor(233, 232, 255);
+          else if (table.kind === "daily") doc.setFillColor(223, 242, 245);
+          else doc.setFillColor(226, 232, 240);
 
-          let x = margin;
+          doc.rect(margin, y, contentWidth, 9, "F");
           doc.setFontSize(8);
           doc.setTextColor(71, 85, 105);
+
+          let x = margin;
 
           table.headers.forEach((header, column) => {
             const width = contentWidth * table.widths[column];
@@ -1683,6 +1768,54 @@
           });
 
           y += 9;
+        }
+
+        function drawRowSegment(table, row, cells, offset, count, rowIndex) {
+          const height = Math.max(10, count * lineHeight + 5);
+
+          if (rowIndex % 2) {
+            doc.setFillColor(248, 250, 252);
+            doc.rect(margin, y, contentWidth, height, "F");
+          }
+
+          let x = margin;
+
+          cells.forEach((lines, column) => {
+            const width = contentWidth * table.widths[column];
+            const right = column === table.moneyColumn;
+
+            doc.setFont("helvetica", right ? "bold" : "normal");
+            doc.setFontSize(9);
+            doc.setTextColor(23, 37, 61);
+
+            if (table.kind === "final" && right) {
+              doc.setTextColor(79, 70, 229);
+            }
+
+            if (table.kind === "daily" && column === 0) {
+              doc.setTextColor(14, 116, 144);
+            }
+
+            if (table.kind === "summary" && column === 2) {
+              if (row[2] === "Menerima") doc.setTextColor(4, 120, 87);
+              else if (row[2] === "Membayar") doc.setTextColor(190, 18, 60);
+            }
+
+            lines.slice(offset, offset + count).forEach((line, index) => {
+              doc.text(
+                line,
+                right ? x + width - 3 : x + 3,
+                y + 6 + index * lineHeight,
+                { align: right ? "right" : "left" }
+              );
+            });
+
+            x += width;
+          });
+
+          y += height;
+          doc.setDrawColor(226, 232, 240);
+          doc.line(margin, y, margin + contentWidth, y);
         }
 
         drawPageHeading(true);
@@ -1707,61 +1840,49 @@
                 "helvetica",
                 column === table.moneyColumn ? "bold" : "normal"
               );
-              return doc.splitTextToSize(
-                String(value),
-                contentWidth * table.widths[column] - 6
-              );
+
+              // Pertahankan baris baru untuk beberapa perjalanan sehari.
+              return String(value).split(/\r?\n/).flatMap(paragraph => {
+                if (!paragraph) return [""];
+                return doc.splitTextToSize(
+                  paragraph,
+                  contentWidth * table.widths[column] - 6
+                );
+              });
             });
 
-            const height = Math.max(
-              10,
-              Math.max(...cells.map(lines => lines.length)) * 4.5 + 5
-            );
+            const maxLines = Math.max(...cells.map(lines => lines.length));
+            const fullHeight = Math.max(10, maxLines * lineHeight + 5);
 
-            if (y + height > bottomLimit) {
+            // Pindahkan satu baris harian utuh jika halaman saat ini tidak cukup.
+            if (y + fullHeight > bottomLimit) {
               newPage();
               drawTableHeading(table, true);
             }
 
-            if (rowIndex % 2) {
-              doc.setFillColor(248, 250, 252);
-              doc.rect(margin, y, contentWidth, height, "F");
+            // Untuk input sangat panjang, lanjutkan sel ke halaman berikutnya.
+            let offset = 0;
+
+            while (offset < maxLines) {
+              const capacity = Math.floor(
+                (bottomLimit - y - 5) / lineHeight
+              );
+
+              if (capacity < 1) {
+                newPage();
+                drawTableHeading(table, true);
+                continue;
+              }
+
+              const count = Math.min(capacity, maxLines - offset);
+              drawRowSegment(table, row, cells, offset, count, rowIndex);
+              offset += count;
+
+              if (offset < maxLines) {
+                newPage();
+                drawTableHeading(table, true);
+              }
             }
-
-            let x = margin;
-
-            cells.forEach((lines, column) => {
-              const width = contentWidth * table.widths[column];
-              const right = column === table.moneyColumn;
-
-              doc.setFont("helvetica", right ? "bold" : "normal");
-              doc.setFontSize(9);
-              doc.setTextColor(23, 37, 61);
-
-              if (table.kind === "final" && right) {
-                doc.setTextColor(79, 70, 229);
-              }
-
-              if (table.kind === "summary" && column === 2) {
-                if (row[2] === "Menerima") doc.setTextColor(4, 120, 87);
-                else if (row[2] === "Membayar") doc.setTextColor(190, 18, 60);
-              }
-
-              lines.forEach((line, lineIndex) => {
-                doc.text(
-                  line,
-                  right ? x + width - 3 : x + 3,
-                  y + 6 + lineIndex * 4.5,
-                  { align: right ? "right" : "left" }
-                );
-              });
-
-              x += width;
-            });
-
-            y += height;
-            doc.setDrawColor(226, 232, 240);
-            doc.line(margin, y, margin + contentWidth, y);
           });
 
           y += 12;
@@ -1775,12 +1896,9 @@
           doc.setFontSize(8);
           doc.setTextColor(100, 116, 139);
           doc.text("Nebeng bareng, patungan jelas.", margin, 289);
-          doc.text(
-            `${page} / ${pageCount}`,
-            pageWidth - margin,
-            289,
-            { align: "right" }
-          );
+          doc.text(`${page} / ${pageCount}`, pageWidth - margin, 289, {
+            align: "right"
+          });
         }
 
         doc.save(week.slug + ".pdf");
@@ -1799,16 +1917,12 @@
     $("addDayButton").addEventListener("click", () => addDay());
 
     $("calculateButton").addEventListener("click", () => {
-      if (prepareResult()) {
-        $("hasil").scrollIntoView({ behavior: "smooth", block: "start" });
-      }
+      if (prepareResult()) scrollToElement($("hasil"));
     });
 
     $("pngButton").addEventListener("click", exportPNG);
     $("pdfButton").addEventListener("click", exportPDF);
 
-    // Banner diperbarui saat kembali ke tab.
-    // Saat export, periode tetap dihitung ulang dari tanggal device.
     window.addEventListener("focus", () => refreshWeekBanner());
 
     document.addEventListener("visibilitychange", () => {
@@ -1818,13 +1932,9 @@
     refreshWeekBanner();
     renderPeoplePool();
 
-    addDay("Aldwin", ["Herdi", "Pasca", "Fadil"], 96000, "Senin");
-    addDay("Aldwin", ["Herdi", "Pasca", "Fadil"], 96000, "Selasa");
-    addDay("Aldwin", ["Herdi", "Pasca", "Fadil"], 96000, "Rabu");
-    addDay("Aldwin", ["Herdi", "Pasca", "Fadil"], 96000, "Kamis");
-    addDay("Aldwin", ["Herdi", "Pasca", "Fadil"], 96000, "Jumat");
-
-
+    for (const day of DAYS.slice(0, 5)) {
+      addDay("Aldwin", ["Herdi", "Pasca", "Fadil"], 96000, day);
+    }
   </script>
 </body>
 </html>
